@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/* Class-based dark mode: toggled by ThemeProvider, defaults to dark. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Accent colors are derived from FC Barcelona's blaugrana (blue/garnet) —
+ * used sparingly as accents and a faint ambient background glow, not as
+ * literal team-color blocks.
+ */
+:root {
+  --color-surface: #f5f8fc;
+  --color-surface-panel: #ffffff;
+  --color-surface-elevated: #eef3fa;
+  --color-ink: #0f172a;
+  --color-ink-muted: #4b5768;
+  --color-line: #dbe4f0;
+  --color-accent: #0a56b8;
+  --color-accent-2: #a50044;
+}
+
+.dark {
+  --color-surface: #06090f;
+  --color-surface-panel: #0d1522;
+  --color-surface-elevated: #121b2b;
+  --color-ink: #e7edf7;
+  --color-ink-muted: #8b96ab;
+  --color-line: #1e293f;
+  --color-accent: #4c8dff;
+  --color-accent-2: #ef4d84;
+}
+
+@theme inline {
+  --color-surface: var(--color-surface);
+  --color-surface-panel: var(--color-surface-panel);
+  --color-surface-elevated: var(--color-surface-elevated);
+  --color-ink: var(--color-ink);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-line: var(--color-line);
+  --color-accent: var(--color-accent);
+  --color-accent-2: var(--color-accent-2);
+  --color-barca-blue: #004d98;
+  --color-barca-red: #a50044;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background-color: var(--color-surface);
+  background-image:
+    radial-gradient(
+      640px circle at 12% 8%,
+      color-mix(in srgb, var(--color-accent) 18%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      640px circle at 88% 65%,
+      color-mix(in srgb, var(--color-accent-2) 14%, transparent),
+      transparent 60%
+    );
+  background-attachment: fixed;
+  color: var(--color-ink);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+}

@@ -1,0 +1,91 @@
+import type { IconType } from "react-icons";
+import {
+  FiActivity,
+  FiBarChart2,
+  FiClock,
+  FiCloud,
+  FiCode,
+  FiDatabase,
+  FiGitPullRequest,
+  FiGrid,
+  FiLayers,
+  FiPieChart,
+  FiSliders,
+  FiTrendingUp,
+  FiZap,
+} from "react-icons/fi";
+import {
+  SiApacheairflow,
+  SiApachespark,
+  SiConfluence,
+  SiDatabricks,
+  SiDocker,
+  SiExpress,
+  SiFastapi,
+  SiGithub,
+  SiGooglebigquery,
+  SiJira,
+  SiLinux,
+  SiMysql,
+  SiPython,
+  SiPytorch,
+  SiReact,
+  SiScikitlearn,
+  SiSnowflake,
+  SiTensorflow,
+} from "react-icons/si";
+
+// Ordered keyword -> icon lookup. First case-insensitive substring match wins;
+// react-icons' Simple Icons set doesn't include every brand (no AWS, Power BI,
+// Tableau, or dbt logo at time of writing), so those fall back to a fitting
+// generic icon rather than being left unlabeled.
+const KEYWORD_ICONS: [string, IconType][] = [
+  ["airflow", SiApacheairflow],
+  ["databricks", SiDatabricks],
+  ["spark", SiApachespark],
+  ["docker", SiDocker],
+  ["bigquery", SiGooglebigquery],
+  ["snowflake", SiSnowflake],
+  ["react", SiReact],
+  ["express", SiExpress],
+  ["python", SiPython],
+  ["mysql", SiMysql],
+  ["scikit", SiScikitlearn],
+  ["tensorflow", SiTensorflow],
+  ["pytorch", SiPytorch],
+  ["fastapi", SiFastapi],
+  ["linux", SiLinux],
+  ["confluence", SiConfluence],
+  ["jira", SiJira],
+  ["git", SiGithub],
+  ["dbt", FiLayers],
+  ["s3", FiCloud],
+  ["redshift", FiCloud],
+  ["glue", FiCloud],
+  ["athena", FiCloud],
+  ["amazon", FiCloud],
+  ["aws", FiCloud],
+  ["star schema", FiDatabase],
+  ["sql", FiDatabase],
+  ["window functions", FiCode],
+  ["matplotlib", FiPieChart],
+  ["seaborn", FiPieChart],
+  ["power bi", FiBarChart2],
+  ["tableau", FiTrendingUp],
+  ["excel", FiGrid],
+  ["sheets", FiGrid],
+  ["a/b testing", FiSliders],
+  ["hypothesis", FiActivity],
+  ["regression", FiActivity],
+  ["time-series", FiTrendingUp],
+  ["xgboost", FiZap],
+  ["ci/cd", FiGitPullRequest],
+  ["cron", FiClock],
+  ["flask", FiCode],
+];
+
+export function resolveToolIcon(tool: string): IconType {
+  const lower = tool.toLowerCase();
+  const match = KEYWORD_ICONS.find(([keyword]) => lower.includes(keyword));
+  return match ? match[1] : FiCode;
+}

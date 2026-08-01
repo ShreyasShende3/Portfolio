@@ -1,34 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Shreyas Shende — Portfolio
 
-## Getting Started
+Personal portfolio built with Next.js (App Router), TypeScript, Tailwind CSS, and Framer Motion. Single scrollable page with a sticky nav that highlights the section you're on.
 
-First, run the development server:
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Scripts
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+| Command             | What it does                                   |
+| -------------------- | ----------------------------------------------- |
+| `npm run dev`        | Start the local dev server                      |
+| `npm run build`      | Production build                                 |
+| `npm run start`      | Serve the production build locally               |
+| `npm run lint`       | ESLint                                            |
+| `npm run typecheck`  | TypeScript, no output emitted                     |
+| `npm run test`       | Run the test suite once (Vitest)                  |
+| `npm run test:watch` | Run tests in watch mode                           |
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Before deploying or opening a PR, all four of `typecheck`, `lint`, `test`, and `build` should pass clean.
 
-## Learn More
+## Editing content
 
-To learn more about Next.js, take a look at the following resources:
+All real content (bio, skills, experience, projects, certificates, interests) lives in typed files under [`data/`](data) — not inside the components. To update anything on the site, edit the matching file in `data/` and the page picks it up automatically. See [CONTENT_GUIDE.md](CONTENT_GUIDE.md) for details on each file, plus which image assets still need to be dropped into `public/`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+app/                  Next.js App Router entry (layout, page, global styles)
+components/           UI components
+  sections/           One component per page section (Hero, Skills, Projects, ...)
+  theme/               Dark/light mode provider + toggle
+data/                  All site content (edit here, not in components)
+lib/                   Shared types + small hooks (scrollspy, etc.)
+public/                Static assets (resume, profile photo, certificate badges)
+```
 
-## Deploy on Vercel
+## Manual verification checklist
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Automated tests cover the interactive pieces (nav, theme toggle, skill tree, easter egg). Everything else is presentational and should be spot-checked in a browser after content changes:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [ ] Every nav link scrolls to and highlights the right section
+- [ ] Resume link downloads the current PDF
+- [ ] All external links (GitHub, LinkedIn, project repos) open correctly
+- [ ] Dark/light toggle works and persists on reload
+- [ ] Mobile viewport: hamburger menu, skills list, and cards all remain readable
+- [ ] `prefers-reduced-motion` disables the scroll-reveal animation
+- [ ] Konami code (↑ ↑ ↓ ↓ ← → ← → b a) shows the easter-egg toast
+
+## Deployment
+
+Deployed on Vercel from this repo's root — no special root-directory configuration needed, since `package.json` lives at the repo root.
