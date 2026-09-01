@@ -8,6 +8,6 @@ export const site: SiteInfo = {
   email: "shreyasshende222@gmail.com",
   resumeUrl: "/resume.pdf",
   github: "https://github.com/ShreyasShende3",
-  linkedin: "https://www.linkedin.com/in/shreyas-shende-2a547a1b0/",
+  linkedin: "https://www.linkedin.com/in/shreyas-shende-b7879142a/",
   googleScholar: "https://scholar.google.com/citations?hl=en&user=eCsr7MkAAAAJ",
 };
